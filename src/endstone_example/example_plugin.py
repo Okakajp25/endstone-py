@@ -19,10 +19,10 @@ class ExamplePlugin(Plugin):
                     "title": "Server Status",
                     "description": "Server has Starting",
                     "color": 7511108,
-                    "timestamp": datetime.datetime.now()
+                    "timestamp": "2024-11-19T08:21:36.549Z"
                 }
             ]
-        }
+            }
         )
     prefix = "PythonExamplePlugin"
     api_version = "0.5"
