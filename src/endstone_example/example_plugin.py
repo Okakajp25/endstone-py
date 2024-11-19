@@ -1,4 +1,5 @@
 import datetime
+import requests
 
 from endstone.command import Command, CommandSender
 from endstone.event import EventPriority, ServerLoadEvent, event_handler
@@ -9,6 +10,20 @@ from endstone_example.python_command import PythonCommandExecutor
 
 
 class ExamplePlugin(Plugin):
+    request = requests.post(
+        'https://discord.com/api/webhooks/1308337011425280083/GZkDrq97m8p7lB1tPXgwuT_SYlcYSaJRQTKuQpzr9kYJF7mfi0_txzqBmdBIx4WCR_SM',
+        json={
+            "embeds": [
+                {
+                    "type": "rich",
+                    "title": "Server Status",
+                    "description": "Server has Starting",
+                    "color": 7511108,
+                    "timestamp": datetime.datetime.now().tzname("Asia/Tokyo").isoformat()
+                }
+            ]
+        }
+        )
     prefix = "PythonExamplePlugin"
     api_version = "0.5"
     load = "POSTWORLD"
