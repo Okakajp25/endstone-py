@@ -19,7 +19,7 @@ class ExamplePlugin(Plugin):
                     "title": "Server Status",
                     "description": "Server has Starting",
                     "color": 7511108,
-                    "timestamp": datetime.datetime.now().tzname("Asia/Tokyo")
+                    "timestamp": datetime.datetime.now()
                 }
             ]
         }
