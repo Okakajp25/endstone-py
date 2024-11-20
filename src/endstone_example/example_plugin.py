@@ -9,7 +9,6 @@ from endstone_example.example_listener import ExampleListener
 from endstone_example.python_command import PythonCommandExecutor
 
 def discordSend(info):
-    now = datetime.datetime.now().isoformat()
     if info == "start":
         data = {
             "embeds": [
@@ -18,7 +17,7 @@ def discordSend(info):
                     "title": "Server Start",
                     "description": "Server is starting",
                     "color": 7511108,
-                    "timestamp": now,
+                    "timestamp": datetime.datetime.now().isoformat(),
                 }
             ]
         }
