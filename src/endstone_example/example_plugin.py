@@ -8,9 +8,9 @@ from endstone.plugin import Plugin
 from endstone_example.example_listener import ExampleListener
 from endstone_example.python_command import PythonCommandExecutor
 
-def discordSend(info):
-    if info == "start":
-        data = {
+def discordStart():
+    requests.post('https://discord.com/api/webhooks/1308337011425280083/GZkDrq97m8p7lB1tPXgwuT_SYlcYSaJRQTKuQpzr9kYJF7mfi0_txzqBmdBIx4WCR_SM',
+        json={
             "embeds": [
                 {
                     "type": "rich",
@@ -21,8 +21,10 @@ def discordSend(info):
                 }
             ]
         }
-    if info == "stop":
-        data = {
+    )
+def discordStop():
+    requests.post('https://discord.com/api/webhooks/1308337011425280083/GZkDrq97m8p7lB1tPXgwuT_SYlcYSaJRQTKuQpzr9kYJF7mfi0_txzqBmdBIx4WCR_SM',
+        json={
             "embeds": [
                 {
                     "type": "rich",
@@ -33,9 +35,7 @@ def discordSend(info):
                 }
             ]
         }
-    requests.post(
-        'https/://discord.com/api/webhooks/1308337011425280083/GZkDrq97m8p7lB1tPXgwuT_SYlcYSaJRQTKuQpzr9kYJF7mfi0_txzqBmdBIx4WCR_SM',
-        json={data})
+    )
 class ExamplePlugin(Plugin):
     prefix = "PythonExamplePlugin"
     api_version = "0.5"
@@ -76,7 +76,7 @@ class ExamplePlugin(Plugin):
 
     def on_load(self) -> None:
         self.logger.info("on_load is called!")
-        discordSend("start")
+        discordStart()
 
     def on_enable(self) -> None:
         self.logger.info("on_enable is called!")
@@ -89,7 +89,7 @@ class ExamplePlugin(Plugin):
 
     def on_disable(self) -> None:
         self.logger.info("on_disable is called!")
-        discordSend("stop")
+        discordStop()
 
     def on_command(self, sender: CommandSender, command: Command, args: list[str]) -> bool:
         # You can also handle commands here instead of setting an executor in on_enable if you prefer
