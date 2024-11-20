@@ -8,6 +8,7 @@ from endstone.plugin import Plugin
 from endstone_example.example_listener import ExampleListener
 from endstone_example.python_command import PythonCommandExecutor
 
+now = datetime.datetime.now().isoformat()
 
 class ExamplePlugin(Plugin):
     request = requests.post(
@@ -19,7 +20,7 @@ class ExamplePlugin(Plugin):
                     "title": "Server Status",
                     "description": "Server has Starting",
                     "color": 7511108,
-                    "timestamp": "2024-11-19T08:21:36.549Z"
+                    "timestamp": now,
                 }
             ]
             }
