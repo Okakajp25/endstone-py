@@ -8,23 +8,36 @@ from endstone.plugin import Plugin
 from endstone_example.example_listener import ExampleListener
 from endstone_example.python_command import PythonCommandExecutor
 
-now = datetime.datetime.now().isoformat()
-
-class ExamplePlugin(Plugin):
-    request = requests.post(
-        'https://discord.com/api/webhooks/1308337011425280083/GZkDrq97m8p7lB1tPXgwuT_SYlcYSaJRQTKuQpzr9kYJF7mfi0_txzqBmdBIx4WCR_SM',
-        json={
+def discordSend(info):
+    if info == "start":
+        data = {
             "embeds": [
                 {
                     "type": "rich",
-                    "title": "Server Status",
-                    "description": "Server has Starting",
+                    "title": "Server Start",
+                    "description": "Server is starting",
                     "color": 7511108,
                     "timestamp": now,
                 }
             ]
-            }
-        )
+        }
+    if info == "stop":
+        data = {
+            "embeds": [
+                {
+                    "type": "rich",
+                    "title": "Server Stop",
+                    "description": "Server is stopping",
+                    "color": 15728640,
+                    "timestamp": now,
+                }
+            ]
+        }
+    now = datetime.datetime.now().isoformat()
+    requests.post(
+        'https/://discord.com/api/webhooks/1308337011425280083/GZkDrq97m8p7lB1tPXgwuT_SYlcYSaJRQTKuQpzr9kYJF7mfi0_txzqBmdBIx4WCR_SM',
+        json={data})
+class ExamplePlugin(Plugin):
     prefix = "PythonExamplePlugin"
     api_version = "0.5"
     load = "POSTWORLD"
@@ -64,6 +77,7 @@ class ExamplePlugin(Plugin):
 
     def on_load(self) -> None:
         self.logger.info("on_load is called!")
+        discordSend("start")
 
     def on_enable(self) -> None:
         self.logger.info("on_enable is called!")
@@ -76,6 +90,7 @@ class ExamplePlugin(Plugin):
 
     def on_disable(self) -> None:
         self.logger.info("on_disable is called!")
+        discordSend("stop")
 
     def on_command(self, sender: CommandSender, command: Command, args: list[str]) -> bool:
         # You can also handle commands here instead of setting an executor in on_enable if you prefer
