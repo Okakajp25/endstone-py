@@ -88,7 +88,7 @@ class ExamplePlugin(Plugin):
         self.server.scheduler.run_task(self, self.log_time, delay=0, period=20 * 1)  # every second
 
     def on_disable(self) -> None:
-        self.logger.info("on_disable is called!")
+        self.logger.info("on_disable called!")
         discordStop()
 
     def on_command(self, sender: CommandSender, command: Command, args: list[str]) -> bool:
