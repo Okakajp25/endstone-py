@@ -9,6 +9,7 @@ from endstone_example.example_listener import ExampleListener
 from endstone_example.python_command import PythonCommandExecutor
 
 def discordSend(info):
+    now = datetime.datetime.now().isoformat()
     if info == "start":
         data = {
             "embeds": [
@@ -29,11 +30,10 @@ def discordSend(info):
                     "title": "Server Stop",
                     "description": "Server is stopping",
                     "color": 15728640,
-                    "timestamp": now,
+                    "timestamp": datetime.datetime.now().isoformat(),
                 }
             ]
         }
-    now = datetime.datetime.now().isoformat()
     requests.post(
         'https/://discord.com/api/webhooks/1308337011425280083/GZkDrq97m8p7lB1tPXgwuT_SYlcYSaJRQTKuQpzr9kYJF7mfi0_txzqBmdBIx4WCR_SM',
         json={data})
